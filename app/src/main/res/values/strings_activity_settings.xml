@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_activity_settings">設定</string>
+
+    <string name="pref_connpass_display_name">Connpass ニックネーム</string>
+    <string name="pref_zusaar_display_name">Zussar ニックネーム</string>
+    <string name="pref_atnd_display_name">ATND BETA ニックネーム</string>
+
+</resources>
+

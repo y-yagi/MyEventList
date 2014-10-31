@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray">#808080</color>
+    <color name="darkgray">#A9A9A9</color>
+    <color name="header_gradient_start">#d1e8ff</color>
+    <color name="header_gradient_end">#eef7ff</color>
+    <color name="header_text">#486d94</color>
+    <color name="window_bg">#ebedf0</color>
+    <drawable name="window_bg">@color/window_bg</drawable>
+</resources>
