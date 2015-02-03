@@ -9,19 +9,34 @@
     android:orientation="vertical"
     tools:context="xyz.yyagi.myeventlist.activities.MainActivity">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:text="@string/list_header"
-        android:textColor="@color/header_text"
-        android:textSize="20dp"
-     />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp">
 
-     <fragment
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/textView"
+            android:text="@string/list_header"
+            android:textColor="@color/header_text"
+            android:gravity="center"
+            android:padding="10dip"
+            android:textSize="20dp"
+         />
+        <ProgressBar
+            android:layout_toRightOf="@+id/textView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/progressBar"
+            android:layout_gravity="right" />
+
+
+    </RelativeLayout>
+
+    <fragment
          android:name="xyz.yyagi.myeventlist.fragments.EventListFragment"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
          android:id="@+id/eventListFragment"
          />
 </LinearLayout>

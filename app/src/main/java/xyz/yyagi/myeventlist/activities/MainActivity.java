@@ -2,10 +2,14 @@ package xyz.yyagi.myeventlist.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -24,6 +28,7 @@ import xyz.yyagi.myeventlist.models.EventDaoHelper;
 public class MainActivity extends Activity {
     private RequestQueue mQueue;
     protected EventDao eventDao;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,10 @@ public class MainActivity extends Activity {
         AtndAPIClient atndAPIClient = new AtndAPIClient(mQueue, this);
         atndAPIClient.loadEventData();
 
+        Resources res = getResources();
+        mProgressBar = (ProgressBar)findViewById(R.id.progressBar);
+        mProgressBar.getIndeterminateDrawable().setColorFilter(res.getColor(R.color.header_text), android.graphics.PorterDuff.Mode.MULTIPLY);
+
         eventDao = EventDaoHelper.getEventDao(this);
     }
 
@@ -52,7 +61,7 @@ public class MainActivity extends Activity {
         super.onStart();
     }
 
-    protected  void displayEventData() {
+    public void displayEventData() {
         EventListFragment fragment = (EventListFragment) getFragmentManager().findFragmentById(R.id.eventListFragment);
         fragment.displayEventData();
     }
@@ -96,6 +105,11 @@ public class MainActivity extends Activity {
         zussarAPIClient.loadEventData();
         AtndAPIClient atndAPIClient = new AtndAPIClient(mQueue, this);
         atndAPIClient.loadEventData();
+    }
+
+    public void finishAllDataLoading() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        Toast.makeText(this, "データの読み込みが完了しました", Toast.LENGTH_SHORT).show();
     }
 
 

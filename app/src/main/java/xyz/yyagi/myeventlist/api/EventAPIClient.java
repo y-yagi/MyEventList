@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import xyz.yyagi.myeventlist.activities.MainActivity;
 import xyz.yyagi.myeventlist.models.EventDao;
 import xyz.yyagi.myeventlist.models.EventDaoHelper;
 import xyz.yyagi.myeventlist.models.Event;
@@ -32,6 +33,7 @@ public class EventAPIClient {
     private static final String TAG = EventAPIClient.class.getSimpleName();
     protected String eventDataKey= "events";
     protected String eventCountKey = "results_returned";
+    private static int mQueueCount = 0;
 
     public EventAPIClient(RequestQueue mQueue, Context context) {
         this.mQueue = mQueue;
@@ -53,6 +55,13 @@ public class EventAPIClient {
                         } catch (JSONException e) {
                             Log.e(TAG, "Data parse error url: " + url);
                             e.printStackTrace();
+                        } finally {
+                            mQueueCount--;
+                            if (mQueueCount == 0) {
+                                MainActivity mainActivity = (MainActivity) context;
+                                mainActivity.displayEventData();
+                                mainActivity.finishAllDataLoading();
+                            }
                         }
                     }
                 },
@@ -64,6 +73,7 @@ public class EventAPIClient {
                     }
                 }
         ));
+        mQueueCount++;
     }
 
     protected int getEventCount(JSONObject response) throws JSONException{
