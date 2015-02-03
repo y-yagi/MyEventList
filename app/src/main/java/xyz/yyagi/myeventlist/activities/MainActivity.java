@@ -108,6 +108,7 @@ public class MainActivity extends Activity {
     }
 
     public void finishAllDataLoading() {
+        displayEventData();
         mProgressBar.setVisibility(View.INVISIBLE);
         Toast.makeText(this, "データの読み込みが完了しました", Toast.LENGTH_SHORT).show();
     }

@@ -59,7 +59,6 @@ public class EventAPIClient {
                             mQueueCount--;
                             if (mQueueCount == 0) {
                                 MainActivity mainActivity = (MainActivity) context;
-                                mainActivity.displayEventData();
                                 mainActivity.finishAllDataLoading();
                             }
                         }
